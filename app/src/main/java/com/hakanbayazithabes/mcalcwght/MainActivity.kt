@@ -37,4 +37,20 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    fun onOperator(view: View) {
+        if (lastNumeric && !isOperatorAdded(binding.tvInput.text.toString())) {
+            binding.tvInput.append((view as Button).text)
+            lastNumeric = false
+            lastDot = false
+        }
+    }
+
+    private fun isOperatorAdded(value: String): Boolean {
+        return if (value.startsWith("-")) {
+            false
+        } else {
+            value.contains("/") || value.contains("*") || value.contains("+") || value.contains("-")
+        }
+    }
 }
